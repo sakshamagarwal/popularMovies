@@ -17,10 +17,20 @@ import java.net.URL;
 /**
  * Created by saksham on 18/12/15.
  */
-public class DownloadMovieList extends AsyncTask<String, Void, String[]> {
+public class DownloadWebPage extends AsyncTask<String, Void, JSONObject> {
+
+    UseJsonData callback;
+
+    public interface UseJsonData {
+        void onResult(JSONObject object);
+    }
+
+    public DownloadWebPage(UseJsonData callback) {
+        this.callback = callback;
+    }
 
     @Override
-    protected String[] doInBackground(String... strings) {
+    protected JSONObject doInBackground(String... strings) {
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String moviesJsonStr = null;
@@ -70,21 +80,23 @@ public class DownloadMovieList extends AsyncTask<String, Void, String[]> {
             }
         }
 
+        JSONObject moviesJson = null;
+
         try {
-            JSONObject moviesJson = new JSONObject(moviesJsonStr);
-            JSONArray moviesArray = moviesJson.getJSONArray("results");
-            String s = moviesArray.getJSONObject(0).getString("backdrop_path");
-            Log.e("movies_array", s);
+            moviesJson = new JSONObject(moviesJsonStr);
+//            JSONArray moviesArray = moviesJson.getJSONArray("results");
+//            String s = moviesArray.getJSONObject(0).getString("backdrop_path");
+//            Log.e("movies_array", s);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
 
-        return null;
+        return moviesJson;
     }
 
     @Override
-    protected void onPostExecute(String[] strings) {
-        super.onPostExecute(strings);
+    protected void onPostExecute(JSONObject movies) {
+        callback.onResult(movies);
     }
 }

@@ -8,6 +8,15 @@
     <string name="pref_sorting_key">sorting</string>
     <string name="pref_sorting_popularity">popularity.desc</string>
     <string name="pref_sorting_rating">rating.desc</string>
+    <string name="pref_sorting_favourites">favourites</string>
+    <string name="BASE_API_URL">http://api.themoviedb.org/3/</string>
+    <string name="DISCOVER">discover/movie?sort_by=</string>
+    <string name="MOVIE">movie/</string>
+    <string name="TRAILER">/videos?api_key=</string>
+    <string name="REVIEWS">/reviews?api_key=</string>
+    <string name="APPEND_KEY">&amp;api_key=</string>
+    <string name="API_KEY">Add your key here</string>
+    <string name="watch_trailer">Watch Trailer</string>
 
 
 </resources>

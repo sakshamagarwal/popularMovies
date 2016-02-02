@@ -1,13 +1,8 @@
-<GridView
+<fragment
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_movelist"
+    android:name="com.example.saksham.popularmovies.MoviesListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnWidth="150dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="0dp"
-    android:horizontalSpacing="0dp"
-    android:stretchMode="columnWidth"
-    tools:context=".MainActivity"
-    android:id="@+id/movies_grid">
-</GridView>
+    tools:context="com.example.saksham.popularmovies.MoviesListFragment" />

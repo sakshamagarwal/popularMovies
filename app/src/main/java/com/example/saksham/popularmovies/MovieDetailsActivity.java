@@ -1,37 +1,48 @@
 package com.example.saksham.popularmovies;
 
 import android.content.Intent;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class MovieDetailsActivity extends AppCompatActivity {
-    //final String BASE_IMAGE_URL = this.getString(R.string.image_base_url);
-    final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w185/";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
-        Movie selectedMovie = (Movie)getIntent().getExtras().getParcelable("selectedMovie");
-        TextView title = (TextView)findViewById(R.id.title);
-        TextView plot = (TextView)findViewById(R.id.plot);
-        TextView releaseDate = (TextView)findViewById(R.id.release_date);
-        TextView rating = (TextView)findViewById(R.id.rating);
-        ImageView poster = (ImageView)findViewById(R.id.movie_poster);
 
-        title.setText(selectedMovie.getTitle());
-        plot.setText(selectedMovie.getPlot());
-        releaseDate.setText("Release Date: " + selectedMovie.getReleaseDate());
-        rating.setText("User Rating: " + selectedMovie.getUserRating());
-        Picasso.with(this).load(BASE_IMAGE_URL + selectedMovie.getPosterPath()).into(poster);
+        Bundle args = new Bundle();
+        args.putParcelable(MovieDetailFragment.SELECTED_MOVIE, getIntent().getParcelableExtra(MovieDetailFragment.SELECTED_MOVIE));
+
+        MovieDetailFragment detailFragment = new MovieDetailFragment();
+        detailFragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction().add(R.id.movie_detail_container, detailFragment).commit();
+
+
     }
+
+
 
 
     @Override
@@ -55,4 +66,5 @@ public class MovieDetailsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 }

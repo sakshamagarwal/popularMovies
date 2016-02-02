@@ -14,17 +14,17 @@ import java.util.List;
 /**
  * Created by saksham on 18/12/15.
  */
-public class MovieAdapter extends ArrayAdapter<Movie> {
+public class MovieAdapter extends ArrayAdapter<Movie_Item> {
 
     final String BASE_IMAGE_URL = getContext().getString(R.string.image_base_url);
 
-    public MovieAdapter(Activity context, List<Movie> movies) {
+    public MovieAdapter(Activity context, List<Movie_Item> movies) {
         super(context, 0, movies);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Movie movie = getItem(position);
+        Movie_Item movie = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(
